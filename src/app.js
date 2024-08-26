@@ -17,14 +17,7 @@ require('./dbs/init.mongodb')
 //checkOverload()
 
 //!init routes
-app.get('/', (req, res, next) => {
-    //const strCompression = 'Hello World'
-
-    return res.status(200).json({
-        message: 'welcome!!',
-        //metadata: strCompression.repeat(100000),
-    })
-})
+app.use('/', require('./routes'))
 
 //!handle errors
 
