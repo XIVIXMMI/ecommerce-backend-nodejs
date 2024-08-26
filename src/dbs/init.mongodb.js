@@ -2,9 +2,13 @@
 
 const mongoose = require('mongoose')
 
-const { countConnect } = require('../helpers/check.connect')
+const {db: {host,name,port}} = require('../configs/config.mongodb')
 
-const connectionString = `mongodb://localhost:27017/e-shop`
+const connectionString = `mongodb://${host}:${port}/${name}`
+
+console.log(`connection string:`,connectionString);
+
+const { countConnect } = require('../helpers/check.connect')
 
 class Database{
 
@@ -21,7 +25,7 @@ class Database{
         mongoose.connect( connectionString,{
             maxPoolSize: 50
         }).then( _ => {
-            console.log(`connected mongo success PRO`, countConnect())
+            console.log(`MongoDB Connection Successfully`, countConnect())
         })
         .catch(err => console.log(`error connect!`))
     }
